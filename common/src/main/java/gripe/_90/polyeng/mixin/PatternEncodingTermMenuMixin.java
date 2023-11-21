@@ -10,6 +10,7 @@ import java.util.Optional;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -31,6 +32,9 @@ public abstract class PatternEncodingTermMenuMixin extends MEStorageMenu {
         super(menuType, id, ip, host);
     }
 
+    @Shadow
+    protected abstract ItemStack getAndUpdateOutput();
+
     @Inject(
             method =
                     "<init>(Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Inventory;Lappeng/helpers/IPatternTerminalMenuHost;Z)V",
@@ -42,8 +46,10 @@ public abstract class PatternEncodingTermMenuMixin extends MEStorageMenu {
             IPatternTerminalMenuHost host,
             boolean bindInventory,
             CallbackInfo ci) {
-        // FIXME: FUUUUUUUUUUUUUCK
-        registerClientAction(PolymorphicEnergistics.ACTION, () -> currentRecipe = null);
+        registerClientAction(PolymorphicEnergistics.ACTION, () -> {
+            currentRecipe = null;
+            getAndUpdateOutput();
+        });
     }
 
     @Redirect(
@@ -57,5 +63,10 @@ public abstract class PatternEncodingTermMenuMixin extends MEStorageMenu {
             RecipeManager manager, RecipeType<R> type, C container, Level level) {
         var self = (PatternEncodingTermMenu) (Object) this;
         return RecipeSelection.getPlayerRecipe(self, type, container, level, self.getPlayer());
+    }
+
+    @Inject(method = "setItem", remap = true, at = @At("HEAD"))
+    private void resetRecipe(int slotID, int stateId, ItemStack stack, CallbackInfo ci) {
+        currentRecipe = null;
     }
 }
