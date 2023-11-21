@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = CraftingTermMenu.class, remap = false)
+@Mixin(CraftingTermMenu.class)
 public abstract class CraftingTermMenuMixin extends MEStorageMenu {
     public CraftingTermMenuMixin(MenuType<?> menuType, int id, Inventory ip, ITerminalHost host) {
         super(menuType, id, ip, host);

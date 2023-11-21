@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = PatternEncodingTermMenu.class, remap = false)
+@Mixin(PatternEncodingTermMenu.class)
 public abstract class PatternEncodingTermMenuMixin extends MEStorageMenu {
     @Shadow
     private CraftingRecipe currentRecipe;
@@ -65,7 +65,7 @@ public abstract class PatternEncodingTermMenuMixin extends MEStorageMenu {
         return RecipeSelection.getPlayerRecipe(self, type, container, level, self.getPlayer());
     }
 
-    @Inject(method = "setItem", remap = true, at = @At("HEAD"))
+    @Inject(method = "setItem", at = @At("HEAD"))
     private void resetRecipe(int slotID, int stateId, ItemStack stack, CallbackInfo ci) {
         currentRecipe = null;
     }
