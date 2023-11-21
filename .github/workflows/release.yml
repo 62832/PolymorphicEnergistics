@@ -21,8 +21,6 @@ jobs:
           distribution: 'temurin'
       - name: Set up Gradle
         uses: gradle/gradle-build-action@v2
-      - name: Generate data
-        run: ./gradlew downloadAssets runData
       - name: Build release files
         id: build
         env:
@@ -33,10 +31,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-          curseforge-id: 776293
+          curseforge-id: 941096
           curseforge-token: ${{ secrets.CURSEFORGE_API_KEY }}
 
-          modrinth-id: 24BlI6Ao
+          modrinth-id: VS1a14jA
           modrinth-token: ${{ secrets.MODRINTH_API_KEY }}
 
           name: ${{ steps.build.outputs.MOD_VERSION }} (Fabric ${{ steps.build.outputs.MINECRAFT_VERSION }})
@@ -44,6 +42,7 @@ jobs:
           game-versions: ${{ steps.build.outputs.MINECRAFT_VERSION }}
           dependencies: |
             ae2(required){curseforge:223794}{modrinth:XxWD5pD3}
+            polymorph(required){curseforge:397434}{modrinth:tagwiZkJ}
 
           files: fabric/build/libs/*[0-9].jar
       - name: Publish release files (Forge)
@@ -51,10 +50,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-          curseforge-id: 776293
+          curseforge-id: 941096
           curseforge-token: ${{ secrets.CURSEFORGE_API_KEY }}
 
-          modrinth-id: 24BlI6Ao
+          modrinth-id: VS1a14jA
           modrinth-token: ${{ secrets.MODRINTH_API_KEY }}
 
           name: ${{ steps.build.outputs.MOD_VERSION }} (Forge ${{ steps.build.outputs.MINECRAFT_VERSION }})
@@ -62,5 +61,6 @@ jobs:
           game-versions: ${{ steps.build.outputs.MINECRAFT_VERSION }}
           dependencies: |
             ae2(required){curseforge:223794}{modrinth:XxWD5pD3}
+            polymorph(required){curseforge:388800}{modrinth:tagwiZkJ}
 
           files: forge/build/libs/*[0-9].jar
