@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "gripe._90.polyeng.mixin",
+  "mixins": [
+    "AEBaseMenuAccessor",
+    "CraftingTermMenuMixin",
+    "PatternEncodingTermMenuMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
