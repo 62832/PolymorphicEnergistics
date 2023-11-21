@@ -42,7 +42,7 @@ jobs:
           game-versions: ${{ steps.build.outputs.MINECRAFT_VERSION }}
           dependencies: |
             ae2(required){curseforge:223794}{modrinth:XxWD5pD3}
-            polymorph(required){curseforge:397434}{modrinth:tagwiZkJ}
+            polymorph(required){curseforge:388800}{modrinth:tagwiZkJ}
 
           files: fabric/build/libs/*[0-9].jar
       - name: Publish release files (Forge)

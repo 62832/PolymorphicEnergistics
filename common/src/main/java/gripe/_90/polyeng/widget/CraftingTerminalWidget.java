@@ -12,11 +12,12 @@ public class CraftingTerminalWidget extends PlayerRecipesWidget {
         super(screen, outputSlot);
     }
 
+    @SuppressWarnings("resource")
     @Override
     public void selectRecipe(ResourceLocation id) {
         super.selectRecipe(id);
         var menu = ((CraftingTermScreen<?>) containerScreen).getMenu();
-        menu.getPlayer().getLevel().getRecipeManager().byKey(id).ifPresent(recipe -> ((AEBaseMenuAccessor) menu)
+        menu.getPlayer().level().getRecipeManager().byKey(id).ifPresent(recipe -> ((AEBaseMenuAccessor) menu)
                 .invokeSendClientAction(PolymorphicEnergistics.ACTION));
     }
 }
