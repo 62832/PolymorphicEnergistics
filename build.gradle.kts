@@ -55,6 +55,9 @@ subprojects {
 
     configure<LoomGradleExtensionAPI> {
         silentMojangMappingsLicense()
+
+        @Suppress("UnstableApiUsage")
+        mixin.defaultRefmapName.set("$modId.refmap.json")
     }
 
     repositories {

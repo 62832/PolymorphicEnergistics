@@ -26,7 +26,7 @@ public abstract class CraftingTermMenuMixin extends MEStorageMenu {
         super(menuType, id, ip, host);
     }
 
-    @Shadow
+    @Shadow(remap = false)
     protected abstract void updateCurrentRecipeAndOutput(boolean forceUpdate);
 
     @Inject(

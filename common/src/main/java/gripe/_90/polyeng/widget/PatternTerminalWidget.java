@@ -7,16 +7,15 @@ import com.illusivesoulworks.polymorph.client.recipe.widget.PlayerRecipesWidget;
 import gripe._90.polyeng.PolymorphicEnergistics;
 import gripe._90.polyeng.mixin.AEBaseMenuAccessor;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.Slot;
 
 public class PatternTerminalWidget extends PlayerRecipesWidget {
     private final PatternEncodingTermMenu menu;
 
-    public PatternTerminalWidget(AbstractContainerScreen<?> containerScreen, Slot outputSlot) {
-        super(containerScreen, outputSlot);
-        this.menu = ((PatternEncodingTermScreen<?>) containerScreen).getMenu();
+    public PatternTerminalWidget(PatternEncodingTermScreen<?> screen, Slot outputSlot) {
+        super(screen, outputSlot);
+        menu = screen.getMenu();
     }
 
     @SuppressWarnings("resource")
