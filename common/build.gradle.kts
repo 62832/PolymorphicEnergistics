@@ -1,6 +1,5 @@
 architectury {
     val platforms: List<String> by rootProject.extra
-    println("Platforms: $platforms")
     common(platforms)
 }
 

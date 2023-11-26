@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "polyeng",
   "version": "$version",
-
   "name": "Polymorphic Energistics",
   "description": "Polymorph support for Applied Energistics 2.",
   "authors": ["90"],
@@ -12,13 +11,11 @@
   },
   "icon": "icon.png",
   "license": "LGPLv3.0",
-
   "environment": "*",
   "entrypoints": {
     "client": ["gripe._90.polyeng.fabric.PolyEngFabric"]
   },
   "mixins": ["polyeng.mixins.json"],
-
   "depends": {
     "ae2": ">=$ae2Version",
     "polymorph": ">=$polymorphVersion"

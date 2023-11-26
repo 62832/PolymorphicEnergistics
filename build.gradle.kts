@@ -123,6 +123,11 @@ subprojects {
     }
 
     spotless {
+        kotlinGradle {
+            target("*.kts")
+            diktat()
+        }
+
         java {
             target("src/**/java/**/*.java")
             palantirJavaFormat()
@@ -140,13 +145,16 @@ subprojects {
                 }
                 it
             }
+
             bumpThisNumberIfACustomStepChanges(1)
         }
 
         json {
             target("src/*/resources/**/*.json")
             targetExclude("src/generated/resources/**")
-            prettier().config(mapOf("parser" to "json"))
+            biome()
+            indentWithSpaces(2)
+            endWithNewline()
         }
     }
 }
