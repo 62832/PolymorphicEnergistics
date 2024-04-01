@@ -29,8 +29,8 @@ dependencyResolutionManagement {
             library("ae2-forge", "appeng", "appliedenergistics2-forge").versionRef("ae2")
 
             version("polymorph", "0.49.1")
-            library("polymorph-fabric", "maven.modrinth", "polymorph").version("E4b6m0sQ")
-            library("polymorph-forge", "maven.modrinth", "polymorph").version("FBfg7una")
+            library("polymorph-fabric", "curse.maven", "polymorph-388800").version("4813983-sources")
+            library("polymorph-forge", "curse.maven", "polymorph-388800").version("4813985-sources")
 
             version("kubejs", "2001.6.4-build.95")
             library("kubejs-fabric", "dev.latvian.mods", "kubejs-fabric").versionRef("kubejs")

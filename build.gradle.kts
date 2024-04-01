@@ -96,10 +96,10 @@ subprojects {
         }
 
         maven {
-            name = "Modrinth Maven"
-            url = uri("https://api.modrinth.com/maven")
+            name = "CurseMaven"
+            url = uri("https://cursemaven.com")
             content {
-                includeGroup("maven.modrinth")
+                includeGroup("curse.maven")
             }
         }
     }
