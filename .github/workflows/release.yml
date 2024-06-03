@@ -25,9 +25,9 @@ jobs:
         id: build
         env:
           POLYENG_VERSION: ${{ github.event.release.tag_name }}
-        run: ./gradlew releaseInfo build
-      - name: Publish release files (Fabric)
-        uses: Kir-Antipov/mc-publish@4db8bd126f74d5e143822181a2b1201308e2c796
+        run: ./gradlew build
+      - name: Publish release files
+        uses: Kir-Antipov/mc-publish@c0f30ad683340ba9a5374ba42157179f30171107
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -37,30 +37,8 @@ jobs:
           modrinth-id: VS1a14jA
           modrinth-token: ${{ secrets.MODRINTH_API_KEY }}
 
-          name: ${{ steps.build.outputs.MOD_VERSION }} (Fabric ${{ steps.build.outputs.MINECRAFT_VERSION }})
-          version: fabric-${{ steps.build.outputs.MOD_VERSION }}-${{ steps.build.outputs.MINECRAFT_VERSION }}
-          game-versions: ${{ steps.build.outputs.MINECRAFT_VERSION }}
+          game-versions: 1.20.4
+          loaders: neoforge
           dependencies: |
             ae2(required){curseforge:223794}{modrinth:XxWD5pD3}
             polymorph(required){curseforge:388800}{modrinth:tagwiZkJ}
-
-          files: fabric/build/libs/*[0-9].jar
-      - name: Publish release files (Forge)
-        uses: Kir-Antipov/mc-publish@4db8bd126f74d5e143822181a2b1201308e2c796
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-          curseforge-id: 941096
-          curseforge-token: ${{ secrets.CURSEFORGE_API_KEY }}
-
-          modrinth-id: VS1a14jA
-          modrinth-token: ${{ secrets.MODRINTH_API_KEY }}
-
-          name: ${{ steps.build.outputs.MOD_VERSION }} (Forge ${{ steps.build.outputs.MINECRAFT_VERSION }})
-          version: forge-${{ steps.build.outputs.MOD_VERSION }}-${{ steps.build.outputs.MINECRAFT_VERSION }}
-          game-versions: ${{ steps.build.outputs.MINECRAFT_VERSION }}
-          dependencies: |
-            ae2(required){curseforge:223794}{modrinth:XxWD5pD3}
-            polymorph(required){curseforge:388800}{modrinth:tagwiZkJ}
-
-          files: forge/build/libs/*[0-9].jar
