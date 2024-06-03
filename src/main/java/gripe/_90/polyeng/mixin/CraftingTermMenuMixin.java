@@ -5,6 +5,7 @@ import appeng.menu.me.common.MEStorageMenu;
 import appeng.menu.me.items.CraftingTermMenu;
 import com.illusivesoulworks.polymorph.common.crafting.RecipeSelection;
 import gripe._90.polyeng.PolymorphicEnergistics;
+import it.unimi.dsi.fastutil.shorts.ShortSet;
 import java.util.Optional;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
@@ -51,5 +52,11 @@ public abstract class CraftingTermMenuMixin extends MEStorageMenu {
             RecipeManager manager, RecipeType<R> type, C container, Level level) {
         var self = (CraftingTermMenu) (Object) this;
         return RecipeSelection.getPlayerRecipe(self, type, container, level, self.getPlayer());
+    }
+
+    @Override
+    public void onServerDataSync(ShortSet updatedFields) {
+        super.onServerDataSync(updatedFields);
+        updateCurrentRecipeAndOutput(true);
     }
 }
