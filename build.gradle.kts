@@ -6,7 +6,7 @@ plugins {
 val modId = "polyeng"
 
 base.archivesName = modId
-version = System.getenv("POLYENG_VERSION") ?: "0.0.0"
+version = System.getenv("VERSION") ?: "0.0.0"
 group = "gripe.90"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)

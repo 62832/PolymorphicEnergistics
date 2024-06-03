@@ -20,6 +20,4 @@ build
 # other
 eclipse
 run
-**/src/generated
-.architectury-transformer
 .directory

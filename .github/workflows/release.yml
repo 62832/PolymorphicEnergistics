@@ -24,7 +24,7 @@ jobs:
       - name: Build release files
         id: build
         env:
-          POLYENG_VERSION: ${{ github.event.release.tag_name }}
+          VERSION: ${{ github.event.release.tag_name }}
         run: ./gradlew build
       - name: Publish release files
         uses: Kir-Antipov/mc-publish@c0f30ad683340ba9a5374ba42157179f30171107
