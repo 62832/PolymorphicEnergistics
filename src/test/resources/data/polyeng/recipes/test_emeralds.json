@@ -1,12 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "ingredients": [
     {
       "item": "minecraft:dirt"
     }
   ],
   "result": {
-    "item": "minecraft:emerald"
+    "id": "minecraft:emerald"
   }
 }

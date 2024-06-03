@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.neogradle)
+    alias(libs.plugins.moddev)
     alias(libs.plugins.spotless)
 }
 
@@ -9,7 +9,7 @@ base.archivesName = modId
 version = System.getenv("POLYENG_VERSION") ?: "0.0.0"
 group = "gripe.90"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 repositories {
     mavenLocal()
@@ -33,24 +33,30 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.neoforge)
     implementation(libs.ae2)
     implementation(libs.polymorph)
 }
 
-runs {
-    configureEach {
-        workingDirectory(file("run"))
-        systemProperty("forge.logging.console.level", "info")
-        modSource(sourceSets.main.get())
+neoForge {
+    version = libs.versions.neoforge.get()
+
+    mods {
+        create(modId) {
+            sourceSet(sourceSets.main.get())
+            sourceSet(sourceSets.test.get())
+        }
     }
 
-    create("client") {
-        modSource(sourceSets.test.get())
-    }
+    runs {
+        create("client") {
+            client()
+            gameDirectory = file("run")
+        }
 
-    create("server") {
-        workingDirectory(file("run/server"))
+        create("server") {
+            server()
+            gameDirectory = file("run/server")
+        }
     }
 }
 
@@ -66,8 +72,6 @@ tasks {
     }
 
     processResources {
-        exclude("**/.cache")
-
         val props = mapOf(
             "version" to version,
             "ae2Version" to libs.versions.ae2.get(),
@@ -75,7 +79,7 @@ tasks {
         )
 
         inputs.properties(props)
-        filesMatching("META-INF/mods.toml") {
+        filesMatching("META-INF/neoforge.mods.toml") {
             expand(props)
         }
     }
