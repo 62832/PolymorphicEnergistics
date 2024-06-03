@@ -13,6 +13,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
@@ -26,7 +27,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PatternEncodingTermMenu.class)
 public abstract class PatternEncodingTermMenuMixin extends MEStorageMenu {
     @Shadow
-    private CraftingRecipe currentRecipe;
+    private RecipeHolder<CraftingRecipe> currentRecipe;
 
     public PatternEncodingTermMenuMixin(MenuType<?> menuType, int id, Inventory ip, ITerminalHost host) {
         super(menuType, id, ip, host);
@@ -35,10 +36,11 @@ public abstract class PatternEncodingTermMenuMixin extends MEStorageMenu {
     @Shadow(remap = false)
     protected abstract ItemStack getAndUpdateOutput();
 
+    // spotless:off
     @Inject(
-            method =
-                    "<init>(Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Inventory;Lappeng/helpers/IPatternTerminalMenuHost;Z)V",
+            method = "<init>(Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Inventory;Lappeng/helpers/IPatternTerminalMenuHost;Z)V",
             at = @At("RETURN"))
+    // spotless:off
     private void registerAction(
             MenuType<?> menuType,
             int id,
@@ -52,14 +54,14 @@ public abstract class PatternEncodingTermMenuMixin extends MEStorageMenu {
         });
     }
 
+    // spotless:off
     @Redirect(
             method = "getAndUpdateOutput",
-            at =
-                    @At(
-                            value = "INVOKE",
-                            target =
-                                    "Lnet/minecraft/world/item/crafting/RecipeManager;getRecipeFor(Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;"))
-    private <C extends Container, R extends Recipe<C>> Optional<R> getRecipe(
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/item/crafting/RecipeManager;getRecipeFor(Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;"))
+    // spotless:on
+    private <C extends Container, R extends Recipe<C>> Optional<RecipeHolder<R>> getRecipe(
             RecipeManager manager, RecipeType<R> type, C container, Level level) {
         var self = (PatternEncodingTermMenu) (Object) this;
         return RecipeSelection.getPlayerRecipe(self, type, container, level, self.getPlayer());

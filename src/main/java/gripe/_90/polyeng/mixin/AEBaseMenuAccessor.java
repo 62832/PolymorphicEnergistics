@@ -4,8 +4,8 @@ import appeng.menu.AEBaseMenu;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-@Mixin(value = AEBaseMenu.class, remap = false)
+@Mixin(AEBaseMenu.class)
 public interface AEBaseMenuAccessor {
-    @Invoker
+    @Invoker(remap = false)
     void invokeSendClientAction(String action);
 }
