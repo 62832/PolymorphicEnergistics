@@ -22,7 +22,7 @@ public class PolymorphicEnergistics {
                 if (screen instanceof CraftingTermScreen<?> craftingTerminal) {
                     for (var slot : craftingTerminal.getMenu().slots) {
                         if (slot instanceof CraftingTermSlot) {
-                            return new CraftingTerminalWidget(craftingTerminal, slot);
+                            return new CraftingTerminalWidget<>(craftingTerminal, slot);
                         }
                     }
                 }
@@ -30,7 +30,7 @@ public class PolymorphicEnergistics {
                 if (screen instanceof PatternEncodingTermScreen<?> patternTerminal) {
                     for (var slot : patternTerminal.getMenu().slots) {
                         if (slot instanceof PatternTermSlot) {
-                            return new PatternTerminalWidget(patternTerminal, slot);
+                            return new PatternTerminalWidget<>(patternTerminal, slot);
                         }
                     }
                 }
