@@ -51,7 +51,7 @@ public abstract class BaseTerminalWidget<M extends MEStorageMenu, S extends MESt
 
     @Override
     public void tick() {
-        if (containerScreen.imageHeight != menuHeight) {
+        if (containerScreen.getYSize() != menuHeight) {
             for (var slot : menu.slots) {
                 if (slotClass.isInstance(slot)) {
                     outputSlot = slot;
@@ -60,7 +60,7 @@ public abstract class BaseTerminalWidget<M extends MEStorageMenu, S extends MESt
                 }
             }
 
-            menuHeight = containerScreen.imageHeight;
+            menuHeight = containerScreen.getYSize();
         }
     }
 
