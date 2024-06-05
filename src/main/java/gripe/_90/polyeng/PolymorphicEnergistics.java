@@ -13,7 +13,6 @@ import net.neoforged.fml.loading.FMLEnvironment;
 @Mod(PolymorphicEnergistics.MODID)
 public class PolymorphicEnergistics {
     public static final String MODID = "polyeng";
-
     public static final String ACTION = MODID + "$selectRecipe";
 
     public PolymorphicEnergistics() {

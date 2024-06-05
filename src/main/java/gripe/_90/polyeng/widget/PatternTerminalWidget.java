@@ -2,7 +2,6 @@ package gripe._90.polyeng.widget;
 
 import appeng.client.gui.me.items.PatternEncodingTermScreen;
 import appeng.menu.me.items.PatternEncodingTermMenu;
-import appeng.menu.slot.PatternTermSlot;
 import appeng.parts.encoding.EncodingMode;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.inventory.Slot;
@@ -10,7 +9,7 @@ import net.minecraft.world.inventory.Slot;
 public class PatternTerminalWidget<M extends PatternEncodingTermMenu>
         extends BaseTerminalWidget<M, PatternEncodingTermScreen<M>> {
     public PatternTerminalWidget(PatternEncodingTermScreen<M> screen, Slot outputSlot) {
-        super(screen, outputSlot, PatternTermSlot.class);
+        super(screen, outputSlot);
     }
 
     @Override

@@ -3,10 +3,12 @@
   "minVersion": "0.8.5",
   "package": "gripe._90.polyeng.mixin",
   "mixins": [
+    "AbstractRecipesWidgetAccessor",
     "AEBaseMenuAccessor",
     "CraftingTermMenuMixin",
     "PatternEncodingTermMenuMixin"
   ],
+  "client": ["MEStorageScreenMixin"],
   "injectors": {
     "defaultRequire": 1
   }
