@@ -43,7 +43,6 @@ neoForge {
     mods {
         create(modId) {
             sourceSet(sourceSets.main.get())
-            sourceSet(sourceSets.test.get())
         }
     }
 
@@ -62,6 +61,8 @@ neoForge {
 
 tasks {
     jar {
+        exclude("data")
+
         from(rootProject.file("LICENSE")) {
             rename { "${it}_$modId" }
         }
