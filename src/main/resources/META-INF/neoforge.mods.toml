@@ -1,0 +1,27 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+
+issueTrackerURL = "https://github.com/62832/PolymorphicEnergistics/issues"
+displayURL = "https://github.com/62832/PolymorphicEnergistics"
+logoFile = "icon.png"
+authors = "90"
+license = "LGPLv3.0"
+
+[[mods]]
+modId = "polyeng"
+version = "$version"
+displayName = "Polymorphic Energistics"
+description = "Polymorph support for Applied Energistics 2."
+
+[[mixins]]
+config = "polyeng.mixins.json"
+
+[[dependencies]]
+modId = "ae2"
+versionRange = "[$ae2Version,)"
+ordering = "AFTER"
+
+[[dependencies]]
+modId = "polymorph"
+versionRange = "[$polymorphVersion,)"
+ordering = "AFTER"
