@@ -37,6 +37,7 @@ jobs:
           modrinth-id: VS1a14jA
           modrinth-token: ${{ secrets.MODRINTH_API_KEY }}
 
+          loaders: neoforge
           dependencies: |
             ae2(required){curseforge:223794}{modrinth:XxWD5pD3}
             polymorph(required){curseforge:388800}{modrinth:tagwiZkJ}
