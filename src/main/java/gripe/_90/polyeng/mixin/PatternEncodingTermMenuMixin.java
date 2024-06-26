@@ -63,10 +63,7 @@ public abstract class PatternEncodingTermMenuMixin extends MEStorageMenu {
     // spotless:on
     private <I extends RecipeInput, R extends Recipe<I>> Optional<RecipeHolder<R>> getRecipe(
             RecipeManager manager, RecipeType<R> type, I input, Level level) {
-        var self = (PatternEncodingTermMenu) (Object) this;
-        return PolymorphApi.getInstance()
-                .getRecipeManager()
-                .getPlayerRecipe(self, type, input, level, self.getPlayer());
+        return PolymorphApi.getInstance().getRecipeManager().getPlayerRecipe(this, type, input, level, getPlayer());
     }
 
     @Inject(method = "setItem", at = @At("HEAD"))
