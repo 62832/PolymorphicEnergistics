@@ -55,6 +55,7 @@ tasks {
         val props = mapOf(
             "version" to version,
             "mcVersion" to libs.versions.minecraft.get(),
+            "neoVersion" to libs.versions.neoforge.get(),
             "ae2Version" to libs.versions.ae2.get(),
             "polymorphVersion" to libs.versions.polymorph.get(),
         )
