@@ -17,10 +17,6 @@ description = "Polymorph support for Applied Energistics 2."
 config = "polyeng.mixins.json"
 
 [[dependencies]]
-modId = "minecraft"
-versionRange = "[$mcVersion,)"
-
-[[dependencies]]
 modId = "ae2"
 versionRange = "[$ae2Version,)"
 
