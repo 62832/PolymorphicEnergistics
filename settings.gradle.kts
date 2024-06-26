@@ -1,32 +1,53 @@
 pluginManagement {
-    repositories {
-        maven { url = uri("https://maven.neoforged.net/releases") }
-        maven {
-            name = "Maven for PR #1"  // https://github.com/neoforged/ModDevGradle/pull/1
-            url = uri("https://prmaven.neoforged.net/ModDevGradle/pr1")
-            content {
-                includeModule("net.neoforged.moddev", "net.neoforged.moddev.gradle.plugin")
-                includeModule("net.neoforged.moddev.junit", "net.neoforged.moddev.junit.gradle.plugin")
-                includeModule("net.neoforged", "moddev-gradle")
-            }
-        }
-        gradlePluginPortal()
+    plugins {
+        id("net.neoforged.moddev") version "0.1.112"
+        id("net.neoforged.moddev.repositories") version "0.1.112"
+        id("com.diffplug.spotless") version "6.25.0"
     }
 }
 
-dependencyResolutionManagement {
-    versionCatalogs {
-        create("libs") {
-            plugin("moddev", "net.neoforged.moddev").version("0.1.50-pr-1-pr-publish")
-            plugin("spotless", "com.diffplug.spotless").version("6.23.3")
+plugins {
+    id("net.neoforged.moddev.repositories")
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+}
 
-            version("neoforge", "20.6.91-beta-pr-959-features-gradle-metadata")
+run {
+    @Suppress("UnstableApiUsage")
+    dependencyResolutionManagement {
+        repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
+        rulesMode = RulesMode.FAIL_ON_PROJECT_RULES
 
-            version("ae2", "18.1.3-alpha")
-            library("ae2", "appeng", "appliedenergistics2-neoforge").versionRef("ae2")
+        repositories {
+            mavenCentral()
 
-            version("polymorph", "0.52.1")
-            library("polymorph", "curse.maven", "polymorph-388800").version("5393930-sources-5393931")
+            maven {
+                name = "ModMaven (K4U-NL)"
+                url = uri("https://modmaven.dev/")
+                content {
+                    includeGroup("appeng")
+                }
+            }
+
+            maven {
+                name = "Curse Maven"
+                url = uri("https://cursemaven.com")
+                content {
+                    includeGroup("curse.maven")
+                }
+            }
+        }
+
+        versionCatalogs {
+            create("libs") {
+                version("minecraft", "1.21")
+                version("neoforge", "21.0.13-beta")
+
+                version("ae2", "19.0.5-alpha")
+                library("ae2", "appeng", "appliedenergistics2").versionRef("ae2")
+
+                version("polymorph", "1.0.0")
+                library("polymorph", "curse.maven", "polymorph-388800").version("5474908-sources-5474909")
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.moddev)
-    alias(libs.plugins.spotless)
+    id("net.neoforged.moddev")
+    id("com.diffplug.spotless")
 }
 
 val modId = "polyeng"
@@ -10,27 +10,6 @@ version = System.getenv("VERSION") ?: "0.0.0"
 group = "gripe.90"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
-
-repositories {
-    mavenLocal()
-    mavenCentral()
-
-    maven {
-        name = "ModMaven (K4U-NL)"
-        url = uri("https://modmaven.dev/")
-        content {
-            includeGroup("appeng")
-        }
-    }
-
-    maven {
-        name = "Curse Maven"
-        url = uri("https://cursemaven.com")
-        content {
-            includeGroup("curse.maven")
-        }
-    }
-}
 
 dependencies {
     implementation(libs.ae2)
@@ -75,6 +54,7 @@ tasks {
     processResources {
         val props = mapOf(
             "version" to version,
+            "mcVersion" to libs.versions.minecraft.get(),
             "ae2Version" to libs.versions.ae2.get(),
             "polymorphVersion" to libs.versions.polymorph.get(),
         )
@@ -87,11 +67,6 @@ tasks {
 }
 
 spotless {
-    kotlinGradle {
-        target("*.kts")
-        diktat()
-    }
-
     java {
         target("/src/**/java/**/*.java")
         endWithNewline()
@@ -111,12 +86,5 @@ spotless {
         }
 
         bumpThisNumberIfACustomStepChanges(1)
-    }
-
-    json {
-        target("src/**/resources/**/*.json")
-        biome()
-        indentWithSpaces(2)
-        endWithNewline()
     }
 }

@@ -4,16 +4,16 @@ import appeng.api.storage.ITerminalHost;
 import appeng.helpers.IPatternTerminalMenuHost;
 import appeng.menu.me.common.MEStorageMenu;
 import appeng.menu.me.items.PatternEncodingTermMenu;
-import com.illusivesoulworks.polymorph.common.crafting.RecipeSelection;
+import com.illusivesoulworks.polymorph.api.PolymorphApi;
 import gripe._90.polyeng.PolymorphicEnergistics;
 import java.util.Optional;
-import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
@@ -59,12 +59,14 @@ public abstract class PatternEncodingTermMenuMixin extends MEStorageMenu {
             method = "getAndUpdateOutput",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/item/crafting/RecipeManager;getRecipeFor(Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;"))
+                    target = "Lnet/minecraft/world/item/crafting/RecipeManager;getRecipeFor(Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/item/crafting/RecipeInput;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;"))
     // spotless:on
-    private <C extends Container, R extends Recipe<C>> Optional<RecipeHolder<R>> getRecipe(
-            RecipeManager manager, RecipeType<R> type, C container, Level level) {
+    private <I extends RecipeInput, R extends Recipe<I>> Optional<RecipeHolder<R>> getRecipe(
+            RecipeManager manager, RecipeType<R> type, I input, Level level) {
         var self = (PatternEncodingTermMenu) (Object) this;
-        return RecipeSelection.getPlayerRecipe(self, type, container, level, self.getPlayer());
+        return PolymorphApi.getInstance()
+                .getRecipeManager()
+                .getPlayerRecipe(self, type, input, level, self.getPlayer());
     }
 
     @Inject(method = "setItem", at = @At("HEAD"))

@@ -4,7 +4,7 @@ import appeng.client.gui.me.items.CraftingTermScreen;
 import appeng.client.gui.me.items.PatternEncodingTermScreen;
 import appeng.menu.slot.CraftingTermSlot;
 import appeng.menu.slot.PatternTermSlot;
-import com.illusivesoulworks.polymorph.api.PolymorphApi;
+import com.illusivesoulworks.polymorph.api.client.PolymorphWidgets;
 import gripe._90.polyeng.widget.CraftingTerminalWidget;
 import gripe._90.polyeng.widget.PatternTerminalWidget;
 import net.neoforged.fml.common.Mod;
@@ -17,7 +17,7 @@ public class PolymorphicEnergistics {
 
     public PolymorphicEnergistics() {
         if (FMLEnvironment.dist.isClient()) {
-            PolymorphApi.client().registerWidget(screen -> {
+            PolymorphWidgets.getInstance().registerWidget(screen -> {
                 if (screen instanceof CraftingTermScreen<?> craftingTerminal) {
                     for (var slot : craftingTerminal.getMenu().slots) {
                         if (slot instanceof CraftingTermSlot) {

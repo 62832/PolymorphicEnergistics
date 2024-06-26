@@ -2,7 +2,7 @@ package gripe._90.polyeng.widget;
 
 import appeng.client.gui.me.common.MEStorageScreen;
 import appeng.menu.me.common.MEStorageMenu;
-import com.illusivesoulworks.polymorph.client.recipe.widget.PlayerRecipesWidget;
+import com.illusivesoulworks.polymorph.api.client.widgets.PlayerRecipesWidget;
 import com.mojang.datafixers.util.Pair;
 import gripe._90.polyeng.PolymorphicEnergistics;
 import gripe._90.polyeng.mixin.AEBaseMenuAccessor;
@@ -25,8 +25,8 @@ public abstract class BaseTerminalWidget<M extends MEStorageMenu, S extends MESt
 
     private static WidgetSprites sprites(String base) {
         return new WidgetSprites(
-                new ResourceLocation(PolymorphicEnergistics.MODID, base),
-                new ResourceLocation(PolymorphicEnergistics.MODID, base + "_highlighted"));
+                ResourceLocation.fromNamespaceAndPath(PolymorphicEnergistics.MODID, base),
+                ResourceLocation.fromNamespaceAndPath(PolymorphicEnergistics.MODID, base + "_highlighted"));
     }
 
     @SuppressWarnings("resource")
