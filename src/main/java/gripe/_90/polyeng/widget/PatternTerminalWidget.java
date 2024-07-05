@@ -1,15 +1,15 @@
 package gripe._90.polyeng.widget;
 
 import appeng.client.gui.me.items.PatternEncodingTermScreen;
+import appeng.menu.SlotSemantics;
 import appeng.menu.me.items.PatternEncodingTermMenu;
 import appeng.parts.encoding.EncodingMode;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.world.inventory.Slot;
 
 public class PatternTerminalWidget<M extends PatternEncodingTermMenu>
         extends BaseTerminalWidget<M, PatternEncodingTermScreen<M>> {
-    public PatternTerminalWidget(PatternEncodingTermScreen<M> screen, Slot outputSlot) {
-        super(screen, outputSlot);
+    public PatternTerminalWidget(PatternEncodingTermScreen<M> screen) {
+        super(screen, screen.getMenu().getSlots(SlotSemantics.CRAFTING_RESULT).getFirst());
     }
 
     @Override
