@@ -14,6 +14,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 dependencies {
     implementation(libs.ae2)
     implementation(libs.polymorph)
+    implementation(libs.ae2wtlib)
 }
 
 neoForge {
