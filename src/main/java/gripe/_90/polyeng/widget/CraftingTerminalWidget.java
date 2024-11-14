@@ -13,8 +13,8 @@ public class CraftingTerminalWidget<M extends CraftingTermMenu> extends BaseTerm
 
     @Override
     public int getYPos() {
-        return ModList.get().isLoaded("ae2wtlib")
-                ? AE2WTLibIntegration.getWidgetYPos(menu, getOutputSlot().y, WIDGET_Y_OFFSET + 7, super.getYPos())
+        return ModList.get().isLoaded("ae2wtlib") && AE2WTLibIntegration.isWirelessTerminal(menu)
+                ? getOutputSlot().y - WIDGET_Y_OFFSET - 7
                 : super.getYPos();
     }
 }
