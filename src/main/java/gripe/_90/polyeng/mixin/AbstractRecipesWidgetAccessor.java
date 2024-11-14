@@ -6,6 +6,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(AbstractRecipesWidget.class)
 public interface AbstractRecipesWidgetAccessor {
-    @Invoker(remap = false)
+    @Invoker
     void callResetWidgetOffsets();
 }

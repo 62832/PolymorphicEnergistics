@@ -33,7 +33,7 @@ public abstract class PatternEncodingTermMenuMixin extends MEStorageMenu {
         super(menuType, id, ip, host);
     }
 
-    @Shadow(remap = false)
+    @Shadow
     protected abstract ItemStack getAndUpdateOutput();
 
     // spotless:off

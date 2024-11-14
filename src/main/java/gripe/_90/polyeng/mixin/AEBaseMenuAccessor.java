@@ -6,6 +6,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(AEBaseMenu.class)
 public interface AEBaseMenuAccessor {
-    @Invoker(remap = false)
+    @Invoker
     void callSendClientAction(String action);
 }

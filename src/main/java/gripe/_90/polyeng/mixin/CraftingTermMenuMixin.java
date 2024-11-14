@@ -28,7 +28,7 @@ public abstract class CraftingTermMenuMixin extends MEStorageMenu {
         super(menuType, id, ip, host);
     }
 
-    @Shadow(remap = false)
+    @Shadow
     protected abstract void updateCurrentRecipeAndOutput(boolean forceUpdate);
 
     // spotless:off
